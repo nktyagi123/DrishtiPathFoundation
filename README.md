@@ -112,6 +112,6 @@ The status line above the table tells you which source is currently active ("loa
 
 ## Notes
 
-- The WhatsApp floating button and footer link use `+91-7830260919` (`https://wa.me/917830260919`) on every page.
+- The WhatsApp floating button and footer link use `+91-9917634016` (`https://wa.me/919917634016`) on every page.
 - The contact form (`contact.html`) has no backend: it validates fields client-side, prevents the page reload, and shows a success message on submit — no data is actually sent anywhere.
 - All placeholder images were generated locally so the site looks complete out of the box; replace them with real photos at your convenience using the steps above.
