@@ -74,6 +74,18 @@ Open `donate.html` and edit the text inside:
 
 Replace `example@upi` with your real UPI ID.
 
+## 6a. How to Update the Bank Transfer Details
+
+The Donate page also offers a Bank Transfer option next to the UPI card. Open `donate.html` and edit the values inside the "Bank Transfer" card:
+
+```html
+<strong id="bankNameText">DrishtiPath Foundation</strong>   <!-- Account Name -->
+<strong id="bankAccText">7790377180</strong>                <!-- Account Number -->
+<strong id="bankIfscText">IDIB000G515</strong>               <!-- IFSC Code -->
+```
+
+Each of these (plus the UPI ID) has a **Copy** button next to it. The copy buttons work automatically for any element with `class="copy-btn"` and a `data-copy-target="<id>"` attribute pointing at the value to copy — see `initCopyButtons()` in `js/script.js`.
+
 ## 7. How to Replace the NGO Certificate
 
 Replace `images/certificate/certificate.jpg` with a scan/photo of your real registration certificate. It appears on `about.html` and opens in a lightbox/modal when clicked ("View Certificate").

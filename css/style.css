@@ -504,6 +504,43 @@ h1, h2, h3, h4 { line-height: 1.25; font-weight: 700; color: var(--dark-text); }
 
 .donate-note { color: var(--gray-text); font-size: 0.92rem; margin-top: 1rem; }
 
+/* Two payment method cards (UPI + Bank Transfer) side by side */
+.payment-methods-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2.5rem;
+  align-items: start;
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
+
+.payment-method-title { color: var(--dark-blue); font-size: 1.15rem; margin-bottom: 1.5rem; }
+
+.bank-details { margin-bottom: 1.5rem; }
+
+.bank-detail-row {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  background: var(--light-blue);
+  padding: 0.9rem 1.2rem;
+  border-radius: 12px;
+  margin-bottom: 0.9rem;
+  text-align: left;
+  flex-wrap: wrap;
+}
+
+.bank-detail-label {
+  color: var(--gray-text);
+  font-weight: 600;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  min-width: 110px;
+}
+
+.bank-detail-row strong { color: var(--dark-blue); font-weight: 700; flex: 1; word-break: break-word; }
+
 .donate-info-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -817,6 +854,7 @@ table.donor-table { width: 100%; border-collapse: collapse; min-width: 600px; }
   .contact-grid { grid-template-columns: 1fr; }
   .values-grid { grid-template-columns: repeat(3, 1fr); }
   .donate-info-grid { grid-template-columns: 1fr; }
+  .payment-methods-grid { grid-template-columns: 1fr; max-width: 520px; }
 }
 
 @media (max-width: 900px) {

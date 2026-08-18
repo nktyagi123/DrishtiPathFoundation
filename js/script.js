@@ -14,7 +14,7 @@
    4. Animated Impact Counters (Home page)
    5. Certificate Modal / Lightbox
    6. Contact Form Validation
-   7. Donate Page — Copy UPI ID
+   7. Donate Page — Copy-to-clipboard buttons (UPI ID, bank details)
    8. Donor Table — Excel loading, search, sort (donors.html)
    ========================================================= */
 
@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', function () {
   initImpactCounters();
   initCertificateModal();
   initContactForm();
-  initCopyUpiButton();
+  initCopyButtons();
   initDonorTable();
 });
 
@@ -298,36 +298,43 @@ function initContactForm() {
 }
 
 /* ---------------------------------------------------------
-   7. Donate Page — Copy UPI ID to clipboard
+   7. Donate Page — Copy-to-clipboard buttons
+   Handles every button with class="copy-btn" and a
+   data-copy-target="<id>" attribute (UPI ID, bank account
+   number, IFSC code, etc.) — add more the same way if needed.
    --------------------------------------------------------- */
-function initCopyUpiButton() {
-  var copyBtn = document.getElementById('copyUpiBtn');
-  var upiText = document.getElementById('upiIdText');
-  if (!copyBtn || !upiText) return;
+function initCopyButtons() {
+  var copyButtons = document.querySelectorAll('.copy-btn[data-copy-target]');
+  if (!copyButtons.length) return;
 
-  copyBtn.addEventListener('click', function () {
-    var text = upiText.textContent.trim();
+  copyButtons.forEach(function (copyBtn) {
+    var targetEl = document.getElementById(copyBtn.getAttribute('data-copy-target'));
+    if (!targetEl) return;
 
-    function fallbackCopy() {
-      var temp = document.createElement('textarea');
-      temp.value = text;
-      temp.style.position = 'fixed';
-      temp.style.opacity = '0';
-      document.body.appendChild(temp);
-      temp.select();
-      try { document.execCommand('copy'); } catch (err) { /* ignore */ }
-      document.body.removeChild(temp);
-    }
+    copyBtn.addEventListener('click', function () {
+      var text = targetEl.textContent.trim();
 
-    if (navigator.clipboard && navigator.clipboard.writeText) {
-      navigator.clipboard.writeText(text).catch(fallbackCopy);
-    } else {
-      fallbackCopy();
-    }
+      function fallbackCopy() {
+        var temp = document.createElement('textarea');
+        temp.value = text;
+        temp.style.position = 'fixed';
+        temp.style.opacity = '0';
+        document.body.appendChild(temp);
+        temp.select();
+        try { document.execCommand('copy'); } catch (err) { /* ignore */ }
+        document.body.removeChild(temp);
+      }
 
-    var originalText = copyBtn.textContent;
-    copyBtn.textContent = 'Copied!';
-    setTimeout(function () { copyBtn.textContent = originalText; }, 2000);
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).catch(fallbackCopy);
+      } else {
+        fallbackCopy();
+      }
+
+      var originalText = copyBtn.textContent;
+      copyBtn.textContent = 'Copied!';
+      setTimeout(function () { copyBtn.textContent = originalText; }, 2000);
+    });
   });
 }
 

@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Donate | DrishtiPathFoundation</title>
-<meta name="description" content="Support DrishtiPathFoundation's mission with a donation via UPI. Every contribution helps us change lives.">
+<meta name="description" content="Support DrishtiPathFoundation's mission with a donation via UPI or bank transfer. Every contribution helps us change lives.">
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -42,24 +42,59 @@
   UPDATE LATER:
   1. Replace images/qr/upi-qr.png with your real UPI QR code image.
   2. Replace the UPI ID text below (id="upiIdText") with your real UPI ID.
+  3. Replace the bank account details below (Account Name / Number / IFSC) with your real bank details.
 -->
 <section class="section" id="donate-card">
   <div class="container">
-    <div class="donate-card">
-      <div class="donate-org">DrishtiPathFoundation</div>
+    <div class="donate-org text-center" style="margin-bottom:2.5rem;">DrishtiPathFoundation</div>
 
-      <div class="qr-box">
-        <img src="images/qr/upi-qr.png" alt="DrishtiPathFoundation UPI QR Code">
+    <div class="payment-methods-grid">
+
+      <!-- UPI Payment -->
+      <div class="donate-card">
+        <h3 class="payment-method-title">📱 UPI Payment</h3>
+
+        <div class="qr-box">
+          <img src="images/qr/upi-qr.png" alt="DrishtiPathFoundation UPI QR Code">
+        </div>
+
+        <div class="upi-row">
+          <span>UPI ID:</span>
+          <span class="upi-id" id="upiIdText">drishtipathfoundation@indianbk</span>
+          <button class="copy-btn" data-copy-target="upiIdText">Copy</button>
+        </div>
+
+        <p class="donate-note">Scan the QR code using any UPI app (Google Pay, PhonePe, Paytm, BHIM) or pay directly to the UPI ID shown.</p>
       </div>
 
-      <div class="upi-row">
-        <span>UPI ID:</span>
-        <span class="upi-id" id="upiIdText">example@upi</span>
-        <button class="copy-btn" id="copyUpiBtn">Copy</button>
+      <!-- Bank Transfer -->
+      <div class="donate-card">
+        <h3 class="payment-method-title">🏦 Bank Transfer</h3>
+
+        <div class="bank-details">
+          <div class="bank-detail-row">
+            <span class="bank-detail-label">Account Name</span>
+            <strong id="bankNameText">DrishtiPath Foundation</strong>
+          </div>
+          <div class="bank-detail-row">
+            <span class="bank-detail-label">Account Number</span>
+            <strong id="bankAccText">7790377180</strong>
+            <button class="copy-btn" data-copy-target="bankAccText">Copy</button>
+          </div>
+          <div class="bank-detail-row">
+            <span class="bank-detail-label">IFSC Code</span>
+            <strong id="bankIfscText">IDIB000G515</strong>
+            <button class="copy-btn" data-copy-target="bankIfscText">Copy</button>
+          </div>
+        </div>
+
+        <p class="donate-note">Use these details to donate via NEFT, RTGS, or IMPS from your bank's net-banking or mobile app.</p>
       </div>
 
-      <a href="#donate-card" class="btn btn-primary btn-block" id="donateNowBtn">Donate Now</a>
-      <p class="donate-note">Scan the QR code above using any UPI app (Google Pay, PhonePe, Paytm, BHIM) or pay directly to the UPI ID shown.</p>
+    </div>
+
+    <div class="text-center" style="margin-top:2.5rem;">
+      <a href="#donate-card" class="btn btn-primary" id="donateNowBtn">Donate Now</a>
     </div>
 
     <div class="donate-info-grid">
