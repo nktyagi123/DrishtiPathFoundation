@@ -142,6 +142,7 @@ h1, h2, h3, h4 { line-height: 1.25; font-weight: 700; color: var(--dark-text); }
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 2.5rem;
   padding: 0.9rem 5%;
 }
 
