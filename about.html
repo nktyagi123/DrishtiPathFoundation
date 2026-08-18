@@ -38,10 +38,29 @@
 </section>
 
 <!-- ===================== ABOUT INTRO ===================== -->
+<!--
+  Photo slideshow: same auto-advancing component as the Home page hero
+  (see initHeroSlideshow() in js/script.js). UPDATE LATER: add/replace
+  photos in images/hero-placeholder/ — keep filenames sequential. Add or
+  remove <div class="hero-slide"> blocks here to match how many photos
+  you have (keep this list identical to the one in index.html).
+-->
 <section class="section">
   <div class="container">
     <div class="about-intro">
-      <img src="images/hero-placeholder.jpg" alt="DrishtiPathFoundation community work">
+      <div class="hero-slider" id="heroSlider">
+        <button class="slider-btn slider-prev" id="heroSliderPrev" aria-label="Previous photo">&#10094;</button>
+        <button class="slider-btn slider-next" id="heroSliderNext" aria-label="Next photo">&#10095;</button>
+
+        <div class="hero-slide active"><img src="images/hero-placeholder/hero1.jpg" alt="DrishtiPathFoundation community work 1"></div>
+        <div class="hero-slide"><img src="images/hero-placeholder/hero2.jpg" alt="DrishtiPathFoundation community work 2"></div>
+        <div class="hero-slide"><img src="images/hero-placeholder/hero3.jpg" alt="DrishtiPathFoundation community work 3"></div>
+        <div class="hero-slide"><img src="images/hero-placeholder/hero4.jpg" alt="DrishtiPathFoundation community work 4"></div>
+        <div class="hero-slide"><img src="images/hero-placeholder/hero5.jpg" alt="DrishtiPathFoundation community work 5"></div>
+        <div class="hero-slide"><img src="images/hero-placeholder/hero6.jpg" alt="DrishtiPathFoundation community work 6"></div>
+
+        <div class="slider-dots" id="heroSliderDots"></div>
+      </div>
       <div>
         <span class="section-tag">Who We Are</span>
         <h2 style="margin-bottom:1rem;">A Social Welfare NGO Trust</h2>

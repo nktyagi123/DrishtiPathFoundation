@@ -33,7 +33,8 @@ DrishtiPathFoundation/
 │
 ├── images/
 │   ├── logo-placeholder.png
-│   ├── hero-placeholder.jpg
+│   ├── hero-placeholder.jpg      background behind the Home page hero text
+│   ├── hero-placeholder/         hero1.jpg – hero6.jpg (Home + About photo slideshow)
 │   ├── directors/        director1.jpg, director2.jpg, director3.jpg
 │   ├── donors/           donor1.jpg – donor5.jpg
 │   ├── certificate/      certificate.jpg
@@ -47,12 +48,24 @@ DrishtiPathFoundation/
 
 Replace `images/logo-placeholder.png` with your real logo (recommended: a square image, at least 200×200px). Keep the same filename, or update the `src="images/logo-placeholder.png"` reference in the `<header>` of every `.html` page.
 
+## 2a. How to Update the Hero Photo Slideshow
+
+The Home page hero and the About Us intro image both show the same auto-advancing photo slideshow (fades between photos every 5 seconds, with arrows and dots — the same component used for the Top Donators slideshow).
+
+To update the photos:
+1. Add or replace images in `images/hero-placeholder/`, named sequentially: `hero1.jpg`, `hero2.jpg`, `hero3.jpg`, etc.
+2. If you add or remove photos (not just replace them 1-for-1), update the list of `<div class="hero-slide">...</div>` blocks inside the `.hero-slider` in **both** `index.html` and `about.html` to match — keep the two lists identical.
+
+The slideshow logic lives once in `js/script.js` as `initHeroSlideshow()` (built on the shared `createSlideshow()` engine also used by the Top Donators slideshow), so no JavaScript changes are needed when you just swap photos.
+
+The separate `images/hero-placeholder.jpg` file (no folder) is a different image — it's the static background behind the hero section's text on the Home page. Replace it separately if you want to change that too.
+
 ## 3. How to Replace Director Images
 
 Replace the files in `images/directors/`:
-- `director1.jpg` → Dr. Amit Sharma
-- `director2.jpg` → Priya Verma
-- `director3.jpg` → Rahul Singh
+- `director1.jpg` → Sohit Sagar
+- `director2.jpg` → Meghraj Singh Rana
+- `director3.jpg` → Priyanka
 
 Keep the same filenames so no HTML changes are needed. To update names/positions/descriptions, edit the director cards directly inside `directors.html`.
 

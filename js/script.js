@@ -10,7 +10,7 @@
    Sections:
    1. Mobile Navigation + Sticky Header
    2. Scroll-to-top Button
-   3. Top Donors Slideshow (Home page)
+   3. Slideshows — Hero Photos (Home/About) + Top Donors (Home)
    4. Animated Impact Counters (Home page)
    5. Certificate Modal / Lightbox
    6. Contact Form Validation
@@ -21,6 +21,7 @@
 document.addEventListener('DOMContentLoaded', function () {
   initNavigation();
   initScrollTopButton();
+  initHeroSlideshow();
   initDonorSlideshow();
   initImpactCounters();
   initCertificateModal();
@@ -85,18 +86,23 @@ function initScrollTopButton() {
 }
 
 /* ---------------------------------------------------------
-   3. Top Donors Slideshow
-   Auto-advances every 5 seconds, supports prev/next
-   buttons and clickable indicator dots. Loops forever.
+   3. Slideshows — Hero Photos + Top Donors
+   Both the Home/About hero photo slider and the Top Donors
+   slider share this one generic engine: auto-advance every
+   5 seconds, prev/next buttons, clickable indicator dots,
+   pause on hover, loops forever.
    --------------------------------------------------------- */
-function initDonorSlideshow() {
-  var slider = document.getElementById('donorSlider');
+
+// Generic slideshow engine. Pass the container id, the CSS class used by
+// each slide inside it, and the ids of its dots/prev/next controls.
+function createSlideshow(containerId, slideSelector, dotsId, prevId, nextId) {
+  var slider = document.getElementById(containerId);
   if (!slider) return;
 
-  var slides = Array.prototype.slice.call(slider.querySelectorAll('.donor-slide'));
-  var dotsWrap = document.getElementById('sliderDots');
-  var prevBtn = document.getElementById('sliderPrev');
-  var nextBtn = document.getElementById('sliderNext');
+  var slides = Array.prototype.slice.call(slider.querySelectorAll(slideSelector));
+  var dotsWrap = document.getElementById(dotsId);
+  var prevBtn = document.getElementById(prevId);
+  var nextBtn = document.getElementById(nextId);
   var current = 0;
   var intervalId = null;
   var AUTOPLAY_DELAY = 5000; // 5 seconds
@@ -152,6 +158,16 @@ function initDonorSlideshow() {
 
   showSlide(current);
   startAutoplay();
+}
+
+// Hero photo slideshow — used on the Home page hero and the About Us intro image
+function initHeroSlideshow() {
+  createSlideshow('heroSlider', '.hero-slide', 'heroSliderDots', 'heroSliderPrev', 'heroSliderNext');
+}
+
+// Top Donors slideshow — Home page only
+function initDonorSlideshow() {
+  createSlideshow('donorSlider', '.donor-slide', 'sliderDots', 'sliderPrev', 'sliderNext');
 }
 
 /* ---------------------------------------------------------

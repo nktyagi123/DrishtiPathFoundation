@@ -250,11 +250,24 @@ h1, h2, h3, h4 { line-height: 1.25; font-weight: 700; color: var(--dark-text); }
 
 .hero-buttons { display: flex; gap: 1rem; flex-wrap: wrap; }
 
-.hero-image img {
+/* Hero photo slideshow — reuses .slider-btn / .slider-dots / .dot from the
+   Top Donors Slideshow below, so both sliders share the same JS behaviour. */
+.hero-slider {
+  position: relative;
+  aspect-ratio: 4 / 3;
   border-radius: var(--radius);
+  overflow: hidden;
   box-shadow: var(--shadow-lg);
   border: 4px solid rgba(255, 255, 255, 0.25);
 }
+
+.hero-slide { display: none; width: 100%; height: 100%; animation: fadeIn 0.8s ease; }
+.hero-slide.active { display: block; }
+.hero-slide img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+.hero-slider .slider-dots { position: absolute; left: 0; right: 0; bottom: 16px; margin-top: 0; z-index: 6; }
+.hero-slider .dot { background: rgba(255, 255, 255, 0.55); }
+.hero-slider .dot.active { background: var(--white); }
 
 /* ---------- 6. Generic Cards ---------- */
 .card {
@@ -474,6 +487,22 @@ h1, h2, h3, h4 { line-height: 1.25; font-weight: 700; color: var(--dark-text); }
 }
 
 .qr-box img { width: 220px; height: 220px; object-fit: contain; border-radius: 8px; background: var(--white); }
+
+.qr-download-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: var(--primary-blue);
+  font-weight: 600;
+  font-size: 0.9rem;
+  margin-bottom: 1.5rem;
+  border-bottom: 1px dashed var(--primary-blue);
+  padding-bottom: 2px;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.qr-download-link:hover { color: var(--dark-blue); border-color: var(--dark-blue); }
 
 .upi-row {
   display: flex;
