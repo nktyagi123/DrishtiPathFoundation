@@ -92,6 +92,7 @@ Replace `example@upi` with your real UPI ID.
 The Donate page also offers a Bank Transfer option next to the UPI card. Open `donate.html` and edit the values inside the "Bank Transfer" card:
 
 ```html
+<strong id="bankInstitutionText">Indian Bank</strong>        <!-- Bank Name -->
 <strong id="bankNameText">DrishtiPath Foundation</strong>   <!-- Account Name -->
 <strong id="bankAccText">7790377180</strong>                <!-- Account Number -->
 <strong id="bankIfscText">IDIB000G515</strong>               <!-- IFSC Code -->

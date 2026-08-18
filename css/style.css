@@ -799,6 +799,7 @@ table.donor-table { width: 100%; border-collapse: collapse; min-width: 600px; }
   transition: var(--transition);
 }
 .footer-social a:hover { background: var(--primary-blue); transform: translateY(-3px); }
+.footer-social a svg { width: 18px; height: 18px; fill: var(--white); }
 
 .footer-col h4 { color: var(--white); margin-bottom: 1.1rem; font-size: 1.05rem; }
 .footer-col ul li { margin-bottom: 0.7rem; }
