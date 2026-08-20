@@ -823,6 +823,10 @@ table.donor-table { width: 100%; border-collapse: collapse; min-width: 600px; }
 
 .footer-copy { opacity: 0.75; font-size: 0.88rem; }
 
+.footer-dev { opacity: 0.6; font-size: 0.8rem; margin-top: 0.4rem; }
+.footer-dev a { color: var(--light-blue); opacity: 1; }
+.footer-dev a:hover { text-decoration: underline; }
+
 /* ---------- 17. Floating Buttons ---------- */
 .whatsapp-float {
   position: fixed;
