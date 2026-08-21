@@ -655,14 +655,13 @@ function renderSubscriptionOverlay() {
           '<button type="button" class="copy-btn" data-copy-target="subUpiIdText">Copy</button>' +
         '</div>' +
         '<p>Scan the QR code or pay to the UPI ID above using any UPI app, then confirm below.</p>' +
-        '<button type="button" class="btn btn-primary btn-block" id="subConfirmBtn">I\'ve Paid — Notify Admin</button>' +
-        '<p class="subscription-note">The admin reviews and approves this before the site unlocks — see admin.html.</p>' +
+        '<button type="button" class="btn btn-primary btn-block" id="subConfirmBtn">I\'ve Paid</button>' +
+        '<p class="subscription-note">The admin reviews and approves this before the site unlocks.</p>' +
       '</div>' +
       '<div id="subPendingScreen" class="subscription-screen">' +
         '<div class="subscription-icon">⏳</div>' +
         '<h2>Payment Submitted</h2>' +
-        '<p>Your payment confirmation for <strong>' + monthLabel + '</strong> has been sent to the site admin. ' +
-          'The site will unlock automatically once it is approved.</p>' +
+        '<p>Your website will be available soon.. plz contact VadayAI Solutions Team</p>' +
         '<button type="button" class="btn btn-outline-blue btn-block" id="subRecheckBtn">Check Again</button>' +
       '</div>' +
     '</div>';
