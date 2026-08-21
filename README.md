@@ -24,7 +24,6 @@ DrishtiPathFoundation/
 ├── donate.html          Donate page (UPI QR code + UPI ID)
 ├── donors.html          View Donators (table loaded from Excel, search/sort)
 ├── contact.html         Contact Us (info + validated contact form)
-├── admin.html           Subscription admin panel (not linked from public nav — see section 11)
 │
 ├── css/
 │   └── style.css        All site styling (CSS variables, responsive layout)
@@ -136,38 +135,6 @@ This is the simplest widely-used, browser-compatible way to parse `.xlsx` files 
 If `data/donors.xlsx` cannot be loaded — for example when the site is opened directly by double-clicking `index.html`/`donors.html` (no local server), or the SheetJS CDN script fails to load (no internet connection) — `js/script.js` automatically falls back to a hard-coded sample dataset (`FALLBACK_DONORS`) so the **View Donators** page is never empty.
 
 The status line above the table tells you which source is currently active ("loaded from data/donors.xlsx" vs. "sample donor record(s) (fallback data...)"). To edit the fallback data itself, open `js/script.js` and update the `FALLBACK_DONORS` array near the top of the "Donor Table" section.
-
-## 11. Monthly Subscription Gate + Admin Approval (Maintenance/Payment Overlay + admin.html)
-
-The site includes a client-side "subscription" reminder with an admin-approval workflow, spread across two pieces:
-
-- **The gate** (`index.html`, `about.html`, `directors.html`, `donate.html`, `donors.html`, `contact.html`): at the start of each calendar month, every one of these pages shows a full-screen "Site Under Maintenance" overlay. Clicking through leads to a payment screen (UPI QR + ID, fee ₹499); clicking "I've Paid — Notify Admin" **no longer unlocks the site itself** — it submits a claim and shows a "waiting for admin approval" screen instead.
-- **The admin panel** (`admin.html`, new page, not linked from the public nav): a login-gated dashboard where the admin approves/rejects pending claims, or grants/revokes access manually at any time, independent of the monthly cycle.
-
-**Read this before relying on it:** GitHub Pages only serves static files — there is no backend and no shared storage between different people's browsers. This is an **honor-system workflow, not real security, real payment verification, or a real site-wide switch**:
-- Nothing confirms the ₹499 payment actually happened; the admin approving a claim is the only check, and that's just a button click.
-- Anyone who opens DevTools can delete the overlay, run `localStorage.clear()`, or read the admin username/password directly out of the public `js/script.js` file.
-- **Crucially, everything is stored in `localStorage`, which is private to one browser.** Approving/revoking on the admin's laptop does **not** affect what a visitor sees on their own phone or computer — there is no way to build that without a real backend. It only works as intended when the admin opens `admin.html` on the *same browser* as the gate they're managing (e.g. two tabs on the same computer), which is realistically the site owner testing/managing their own device, or a shared kiosk-style setup.
-
-**How it works** (`js/script.js`):
-- Section 9 (`initSubscriptionGate`, `renderSubscriptionOverlay`) renders the maintenance → payment → pending-approval overlay on every page except `admin.html` (skipped via the `admin-page` class on `<body>`). Access state lives in `localStorage` under `dpf_sub_access` (`{status: 'granted'|'revoked'|'none', period: 'YYYY-MM'}`); a `revoked` status always wins, so the admin can lock the site mid-month even after granting it. Submitted claims live under `dpf_sub_claims`.
-- Section 10 (`initAdminPanel`) runs the `admin.html` login + dashboard, reading/writing those same two keys. Since `localStorage` is shared across tabs of the same browser, approving a claim in an "admin" tab and clicking "Check Again" in the gated tab unlocks it live, without a page reload.
-
-**Configuration** — edit the `SUBSCRIPTION_CONFIG` object near the bottom of `js/script.js`:
-
-```js
-var SUBSCRIPTION_CONFIG = {
-  feeAmount: 499,
-  upiId: '7830260919@ptsbi',           // change if the fee should go elsewhere
-  qrImage: 'images/qr/upi-qr-nitin.jpeg', // change if using a different QR image
-  adminUsername: 'nktyagi123',         // change before publishing!
-  adminPassword: 'tyagi@321'           // change before publishing!
-};
-```
-
-**Change the admin username/password before publishing.** `js/script.js` is a public file served to every visitor — anyone can view it and read the credentials as plain text. This login is a workflow gate to keep the "revoke/grant" buttons from being one accidental click away, not a real authentication barrier.
-
-**Testing it:** open DevTools → Application/Storage → Local Storage and clear the `dpf_sub_access` / `dpf_sub_claims` keys (or run `localStorage.removeItem('dpf_sub_access')` etc. in the console) to reset the gate. Open `admin.html` in a second tab of the same browser to approve/reject claims and watch the first tab's "Check Again" button pick up the change.
 
 ## Notes
 
